@@ -1,6 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import './styles.scss';
+import './styles/main.scss';
+import { WishListProvider } from './utility/WishListContext';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+
+ReactDOM.render(
+  <WishListProvider>
+    <App />
+  </WishListProvider>,
+  document.getElementById('root')
+);

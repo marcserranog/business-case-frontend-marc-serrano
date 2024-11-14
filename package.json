@@ -3,17 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-"scripts": {
-  "start": "webpack serve --mode development --open",
-  "build": "webpack --mode production"
-},
-
+  "scripts": {
+    "start": "webpack serve --mode development --open",
+    "build": "webpack --mode production"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
@@ -29,5 +29,4 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.1.0"
   }
-  
 }

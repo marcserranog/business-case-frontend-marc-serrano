@@ -1,0 +1,26 @@
+@use 'variables';
+
+.wishlist-page {
+    padding: variables.$spacing-large;
+    background-color: variables.$background-color;
+
+    h2 {
+      color: variables.$secondary-color;
+      font-size: 2rem;
+      margin-bottom: variables.$spacing-medium;
+    }
+
+    ul {
+      list-style: none;
+
+      li {
+        padding: variables.$spacing-small 0;
+        font-size: 1.2rem;
+        color: variables.$text-color;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid variables.$danger-color;
+        }
+      }
+    }
+}
