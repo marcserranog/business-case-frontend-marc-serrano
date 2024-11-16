@@ -5,7 +5,7 @@
 }
 
 .wishlist-header {
-  display: flex;
+  display: block;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
@@ -32,7 +32,7 @@
   color: #1e3c72;
   text-align: center;
   margin-bottom: 2rem;
-  flex-grow: 1; /* Esto asegura que el título ocupe el espacio restante y quede centrado */
+  flex-grow: 1;
   text-align: center;
 }
 
@@ -44,9 +44,10 @@
 }
 
 .back-to-home {
-  display: inline-block;
+  display: block;
   text-align: center;
   padding: 0.8rem 1.5rem;
+  width: 350px;
   background-color: #ff4d4d;
   color: #fff;
   text-decoration: none;
