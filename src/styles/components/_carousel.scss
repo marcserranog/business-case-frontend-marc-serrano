@@ -14,7 +14,7 @@
 
   .carousel-items {
     display: flex;
-    gap: variables.$spacing-small; // Reduce el espacio entre tarjetas
+    gap: variables.$spacing-small; 
   }
   .carousel-title {
   font-size: 1rem;

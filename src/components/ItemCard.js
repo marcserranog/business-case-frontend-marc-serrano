@@ -1,14 +1,14 @@
+// src/components/ItemCard.js
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const ItemCard = ({ movie, category }) => {
+const ItemCard = ({ movie }) => {
   const navigate = useNavigate();
 
   const goToDetailPage = () => {
-    console.log('Navigating with:', movie, category);
-    navigate(`/movie/${movie.id}`, { state: { movie, category } });
+    navigate(`/movie/${movie.id}`);
   };
-  
 
   return (
     <div className="item-card" onClick={goToDetailPage}>

@@ -3,14 +3,14 @@
 @mixin button-style($color) {
     background-color: $color;
     color: white;
-    padding: variables.$spacing-small variables.$spacing-medium; // Adjusted for variables namespace
+    padding: variables.$spacing-small variables.$spacing-medium; 
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
 
     &:hover {
-        background-color: cornsilk; // Using color namespace here
+        background-color: cornsilk; 
     }
 }
 

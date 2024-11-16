@@ -1,5 +1,5 @@
-@use '../abstracts/variables';
-@use '../abstracts/mixins';
+@use 'variables';
+@use 'mixins';
 
 .item-detail-page {
     padding: variables.$spacing-large;

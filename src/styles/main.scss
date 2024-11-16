@@ -1,10 +1,7 @@
-@use 'abstracts/variables';
-@use 'abstracts/mixins';
-@use 'abstracts/reset';
-@use 'base/homepage';
-@use 'base/movie-detail-page';
-@use 'base/wishlist';
-@use 'components/carousel';
-@use 'components/item-card';
-@use 'components/item-detail';
-@use 'components/error-message';
+@use 'variables';
+@use 'reset';
+@use 'mixins';
+@use 'carousel';
+@use 'item-card';
+@use 'item-detail';
+@use 'wishlist';

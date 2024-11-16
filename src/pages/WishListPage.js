@@ -1,5 +1,3 @@
-// src/pages/WishListPage.js
-
 import React, { useContext } from 'react';
 import { WishListContext } from '../utility/WishListContext';
 

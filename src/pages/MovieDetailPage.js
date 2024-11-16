@@ -5,7 +5,7 @@ import { fetchMovieDetails } from '../api';
 const MovieDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const location = useLocation(); // Usamos useLocation para acceder a la categoría
+  const location = useLocation(); 
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
