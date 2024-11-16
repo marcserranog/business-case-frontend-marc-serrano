@@ -1,0 +1,28 @@
+@use '../abstracts/variables';
+
+.item-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: variables.$spacing-small;
+  width: 120px; // Reducir el ancho de la tarjeta
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  img {
+    max-width: 100%; // Asegura que la imagen se ajuste al contenedor
+    border-radius: 4px;
+  }
+
+  h3 {
+    font-size: 0.9rem; // Reducir el tamaño del texto
+    color: variables.$text-color;
+    margin-top: variables.$spacing-small;
+  }
+}
+
