@@ -1,14 +1,22 @@
-// src/pages/MovieDetailPage.js
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from '../api';
 import { useWishlist } from '../context/WishlistContext';
+import Alert from '../components/Alert';
+
+const categoryColors = {
+  popular: '#FF5733',
+  top_rated: '#28a745',
+  upcoming: '#007bff',
+};
 
 const MovieDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const [movie, setMovie] = useState(null);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertColor, setAlertColor] = useState('#ff4d4d');  
 
   const { addToWishlist } = useWishlist();
 
@@ -21,23 +29,31 @@ const MovieDetailPage = () => {
     fetchMovie();
   }, [id]);
 
-  if (!movie) return <div>Loading...</div>;
+  useEffect(() => {
+    const category = location.state?.category;
+    if (category && categoryColors[category]) {
+      setAlertColor(categoryColors[category]);
+    }
+  }, [location.state?.category]);  
 
-  // Extraemos la categoría de la película
-  const category = location.state?.category;
+  if (!movie) return <div>Loading...</div>;
 
   const handleAddToWishlist = () => {
     addToWishlist(movie);
+    setShowAlert(true);  
   };
 
   return (
-    <div className={`movie-detail-page ${category}`}>
+    <div className={`movie-detail-page ${location.state?.category}`}>
       <div className="movie-header">
         <button className="back-button" onClick={() => navigate(-1)}>
           &#8592;
         </button>
         <h1>{movie.title}</h1>
       </div>
+
+      {}
+      {showAlert && <Alert message="Movie has been added to your wishlist" onClose={() => setShowAlert(false)} color={alertColor} />}
 
       <div className="movie-content">
         <div className="movie-left">
