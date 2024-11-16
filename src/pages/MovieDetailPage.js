@@ -1,12 +1,16 @@
+// src/pages/MovieDetailPage.js
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from '../api';
+import { useWishlist } from '../context/WishlistContext';
 
 const MovieDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const location = useLocation(); 
+  const location = useLocation();
   const [movie, setMovie] = useState(null);
+
+  const { addToWishlist } = useWishlist();
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -21,6 +25,10 @@ const MovieDetailPage = () => {
 
   // Extraemos la categoría de la película
   const category = location.state?.category;
+
+  const handleAddToWishlist = () => {
+    addToWishlist(movie);
+  };
 
   return (
     <div className={`movie-detail-page ${category}`}>
@@ -39,7 +47,9 @@ const MovieDetailPage = () => {
           />
         </div>
         <div className="movie-right">
-          <button className="wishlist-button">Add to Wishlist</button>
+          <button className="wishlist-button" onClick={handleAddToWishlist}>
+            Add to Wishlist
+          </button>
           <p className="movie-description">{movie.overview}</p>
         </div>
       </div>

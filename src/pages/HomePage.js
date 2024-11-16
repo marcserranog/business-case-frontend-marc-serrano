@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from '../components/Carousel';
+import { Link } from 'react-router-dom';
 import { fetchMoviesByCategory } from '../api';
+import { useWishlist } from '../context/WishlistContext';
 import { FaHeart } from 'react-icons/fa';
 
 const categories = [
@@ -10,10 +12,10 @@ const categories = [
 ];
 
 const HomePage = () => {
+  const { wishlist } = useWishlist();
   const [moviesByCategory, setMoviesByCategory] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [wishlistCount, setWishlistCount] = useState(0);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -32,27 +34,22 @@ const HomePage = () => {
     };
 
     fetchMovies();
-
-    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    setWishlistCount(wishlist.length);
   }, []);
+
+  if (loading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="error">{error}</div>;
 
   return (
     <div className="home-page">
       <header className="home-header">
         <h1 className="home-title">🎬 Movie Web 🎬</h1>
-
-        <div className="wishlist-container">
-          <button 
-            className="wishlist-icon"
-            onClick={() => window.location.href = '/wishlist'}
-          >
+        <Link to="/wishlist" className="wishlist-container">
+          <div className="wishlist-icon">
             <FaHeart />
-            <span className="wishlist-count">{wishlistCount}</span>
-          </button>
-        </div>
+            {wishlist.length > 0 && <div className="wishlist-count">{wishlist.length}</div>}
+          </div>
+        </Link>
       </header>
-
       {categories.map(({ key, title }) => (
         <Carousel key={key} title={title} movies={moviesByCategory[key] || []} category={key} />
       ))}
