@@ -1,7 +1,6 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/**/*.{js,jsx,ts,tsx}', 
+    './src/**/*.{js,jsx}', 
   ],
   theme: {
     extend: {
@@ -18,8 +17,10 @@ module.exports = {
         'bright-yellow': '#ffba08',
       },
       fontFamily: {
-        title: ['Bebas Neue', 'sans-serif'], 
-        body: ['Noto Serif', 'serif'],   
+        title: ['Bebas Neue', 'sans-serif'],
+        body: ['Noto Serif', 'serif'],
+        edu: ['Edu AU VIC WA NT Pre', 'sans-serif'],
+        space: ['Space Grotesk', 'sans-serif'],
       },
     },
   },
