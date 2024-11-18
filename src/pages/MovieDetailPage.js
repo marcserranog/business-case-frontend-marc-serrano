@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { fetchMovieDetails } from '../api';
+import { fetchMovieDetails } from '../api/api';
 import { useWishlist } from '../context/WishlistContext';
 import Alert from '../components/common/Alert';
 

@@ -9,6 +9,7 @@ const WishlistPage = () => {
   if (wishlist.length === 0) {
     return (
       <div className="wishlist-page">
+        <Header />
         <header className="wishlist-header">
           <button className="back-button" onClick={() => navigate(-1)}>
             &#8592; Back

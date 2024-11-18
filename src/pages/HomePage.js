@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from '../components/Carousel';
-import { fetchMoviesByCategory } from '../api';
-import { useWishlist } from '../context/WishlistContext';
-import Header from '../components/common/Header'; 
+import { fetchMoviesByCategory } from '../api/api';
+import Header from '../components/common/Header';
 
 const categories = [
   { key: 'popular', title: 'Popular Movies' },
@@ -11,7 +10,6 @@ const categories = [
 ];
 
 const HomePage = () => {
-  const { wishlist } = useWishlist();
   const [moviesByCategory, setMoviesByCategory] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -35,15 +33,31 @@ const HomePage = () => {
     fetchMovies();
   }, []);
 
-  if (loading) return <div className="loading">Loading...</div>;
-  if (error) return <div className="error">{error}</div>;
+  if (loading)
+    return (
+      <div className="flex justify-center items-center min-h-screen text-2xl text-gray-700">
+        Loading...
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex justify-center items-center min-h-screen text-red-600 font-bold">
+        {error}
+      </div>
+    );
 
   return (
-    <div className="home-page">
+    <div className="min-h-screen bg-dark-red text-light-yellow">
       <Header />
-      <div className="content">
+      <div className="pt-20 pb-8">
         {categories.map(({ key, title }) => (
-          <Carousel key={key} title={title} movies={moviesByCategory[key] || []} category={key} />
+          <Carousel
+            key={key}
+            title={title}
+            movies={moviesByCategory[key] || []}
+            category={key}
+          />
         ))}
       </div>
     </div>

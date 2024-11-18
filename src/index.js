@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { WishlistProvider } from './context/WishlistContext';
-import './styles/main.scss';
+import './styles/tailwind.css';
 
 
 ReactDOM.render(
