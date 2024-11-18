@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from '../api';
 import { useWishlist } from '../context/WishlistContext';
-import Alert from '../components/Alert';
+import Alert from '../components/common/Alert';
 
 const categoryColors = {
   popular: '#FF5733',
