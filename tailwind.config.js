@@ -1,6 +1,6 @@
 module.exports = {
   content: [
-    './src/**/*.{js,jsx}', 
+    './src/**/*.{js,jsx,ts,tsx}', 
   ],
   theme: {
     extend: {
@@ -17,10 +17,17 @@ module.exports = {
         'bright-yellow': '#ffba08',
       },
       fontFamily: {
-        title: ['Bebas Neue', 'sans-serif'],
-        body: ['Noto Serif', 'serif'],
-        edu: ['Edu AU VIC WA NT Pre', 'sans-serif'],
-        space: ['Space Grotesk', 'sans-serif'],
+        title: ['Bebas Neue', 'sans-serif'], 
+        body: ['Noto Serif', 'serif'],   
+      },
+      animation: {
+        fadeIn: 'fadeIn 0.5s ease-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
       },
     },
   },

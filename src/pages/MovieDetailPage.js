@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from '../api/api';
 import { useWishlist } from '../context/WishlistContext';
-import Alert from '../components/common/Alert';
+import Modal from '../components/common/Modal';
 import Header from '../components/common/Header';
 
 const categoryColors = {
@@ -16,10 +16,10 @@ const MovieDetailPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [movie, setMovie] = useState(null);
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertColor, setAlertColor] = useState('bg-red');
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
-  const { addToWishlist } = useWishlist();
+  const { wishlist, addToWishlist } = useWishlist();
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -30,21 +30,22 @@ const MovieDetailPage = () => {
     fetchMovie();
   }, [id]);
 
-  useEffect(() => {
-    const category = location.state?.category;
-    if (category) {
-      setAlertColor(categoryColors[category]);
-    }
-  }, [location.state?.category]);
-
-  if (!movie) return <div>Loading...</div>;
-
   const handleAddToWishlist = () => {
-    addToWishlist(movie);
-    setShowAlert(true);
+    const isDuplicate = wishlist.some(item => item.id === movie.id);
+
+    if (isDuplicate) {
+      setModalMessage('Movie is already in your wishlist');
+    } else {
+      addToWishlist(movie);
+      setModalMessage('Movie has been added to your wishlist');
+    }
+
+    setShowModal(true);
   };
 
   const category = location.state?.category || 'popular';
+
+  if (!movie) return <div>Loading...</div>;
 
   return (
     <div className="movie-detail-page bg-dark-blue min-h-screen py-6 px-8">
@@ -58,8 +59,6 @@ const MovieDetailPage = () => {
         </button>
         <h1 className="movie-title text-4xl font-title text-white ml-4">{movie.title}</h1>
       </div>
-
-      {showAlert && <Alert message="Movie has been added to your wishlist" onClose={() => setShowAlert(false)} color={alertColor} />}
 
       <div className="movie-content flex justify-between items-start mt-16">
         <div className="movie-left flex-shrink-0">
@@ -92,6 +91,8 @@ const MovieDetailPage = () => {
           <strong>Genre:</strong> {movie.genres.map(genre => genre.name).join(', ')}
         </p>
       </div>
+
+      <Modal message={modalMessage} onClose={() => setShowModal(false)} show={showModal} />
     </div>
   );
 };

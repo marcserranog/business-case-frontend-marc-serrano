@@ -8,7 +8,13 @@ export const WishlistProvider = ({ children }) => {
   const [wishlist, setWishlist] = useState([]);
 
   const addToWishlist = (movie) => {
-    setWishlist((prevWishlist) => [...prevWishlist, movie]);
+    const isDuplicate = wishlist.some((item) => item.id === movie.id);
+    if (isDuplicate) {
+      return false;
+    } else {
+      setWishlist((prevWishlist) => [...prevWishlist, movie]);
+      return true;
+    }
   };
 
   return (
