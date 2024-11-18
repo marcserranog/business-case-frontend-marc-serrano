@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from '../api/api';
 import { useWishlist } from '../context/WishlistContext';
-import Modal from '../components/common/Modal';
 import Header from '../components/common/Header';
+import Alert from '../components/common/Alert'; // Importamos el componente Alert
 
 const categoryColors = {
   popular: 'bg-bright-red text-white border-2 border-white hover:bg-dark-red hover:text-white',
@@ -16,9 +16,8 @@ const MovieDetailPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [movie, setMovie] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
-
+  const [alertMessage, setAlertMessage] = useState('');
+  
   const { wishlist, addToWishlist } = useWishlist();
 
   useEffect(() => {
@@ -34,13 +33,11 @@ const MovieDetailPage = () => {
     const isDuplicate = wishlist.some(item => item.id === movie.id);
 
     if (isDuplicate) {
-      setModalMessage('Movie is already in your wishlist');
+      setAlertMessage('Movie is already in your wishlist');
     } else {
       addToWishlist(movie);
-      setModalMessage('Movie has been added to your wishlist');
+      setAlertMessage('Movie has been added to your wishlist');
     }
-
-    setShowModal(true);
   };
 
   const category = location.state?.category || 'popular';
@@ -50,6 +47,9 @@ const MovieDetailPage = () => {
   return (
     <div className="movie-detail-page bg-dark-blue min-h-screen py-6 px-8">
       <Header />
+      
+      <Alert message={alertMessage} onClose={() => setAlertMessage('')} />
+
       <div className="movie-header sticky top-0 z-10 flex items-center justify-between pb-6 border-b-2 border-light-yellow mt-24 bg-dark-blue">
         <button
           className="back-button bg-light-yellow text-dark-blue font-bold px-4 py-2 rounded-full transform transition-all hover:bg-bright-yellow hover:scale-110"
@@ -91,8 +91,6 @@ const MovieDetailPage = () => {
           <strong>Genre:</strong> {movie.genres.map(genre => genre.name).join(', ')}
         </p>
       </div>
-
-      <Modal message={modalMessage} onClose={() => setShowModal(false)} show={showModal} />
     </div>
   );
 };
