@@ -39,7 +39,7 @@ const Header = () => {
         isHidden ? '-translate-y-full' : 'translate-y-0'
       } ${isShrunk ? 'py-2' : 'py-4'}`}
     >
-      <div className="container mx-auto flex justify-between items-center px-6">
+      <div className="w-full flex justify-between items-center px-6">
         <Link
           to="/"
           className="text-3xl font-title tracking-wider text-light-yellow hover:text-bright-yellow transition"
@@ -50,11 +50,12 @@ const Header = () => {
         <nav className="flex items-center space-x-6">
           <Link
             to="/wishlist"
-            className="relative flex items-center justify-center w-12 h-12 bg-white text-bright-red rounded-full hover:scale-110 transition transform shadow-lg"
+            className="relative flex items-center justify-center w-12 h-12 text-golden-orange rounded-full hover:scale-110 transition transform shadow-lg"
           >
-            <FaHeart className="w-6 h-6 text-bright-red" />
+            <FaHeart className="w-6 h-6 text-golden-orange transition-all transform hover:scale-125" />
+
             {wishlist.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center ring-1 ring-orange animate-pulse">
                 {wishlist.length}
               </span>
             )}

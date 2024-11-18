@@ -4,7 +4,7 @@ import ItemCard from './ItemCard';
 const Carousel = ({ title, movies, category }) => {
   return (
     <div className="w-full px-6 py-8">
-      <h2 className="text-3xl font-title text-bright-red mb-4 border-b-4 border-light-yellow inline-block">
+      <h2 className="text-3xl font-title text-light-yellow mb-4 border-light-yellow inline-block">
         {title}
       </h2>
 

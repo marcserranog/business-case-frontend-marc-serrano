@@ -18,7 +18,7 @@ const MovieDetailPage = () => {
   const [movie, setMovie] = useState(null);
   const [alertMessage, setAlertMessage] = useState('');
   
-  const { wishlist, addToWishlist } = useWishlist();
+  const { wishlist, addToWishlist, removeFromWishlist } = useWishlist(); // Añadido removeFromWishlist
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -29,11 +29,12 @@ const MovieDetailPage = () => {
     fetchMovie();
   }, [id]);
 
-  const handleAddToWishlist = () => {
+  const handleWishlistToggle = () => {
     const isDuplicate = wishlist.some(item => item.id === movie.id);
 
     if (isDuplicate) {
-      setAlertMessage('Movie is already in your wishlist');
+      removeFromWishlist(movie.id);
+      setAlertMessage('Movie has been removed from your wishlist');
     } else {
       addToWishlist(movie);
       setAlertMessage('Movie has been added to your wishlist');
@@ -47,16 +48,16 @@ const MovieDetailPage = () => {
   return (
     <div className="movie-detail-page bg-dark-blue min-h-screen py-6 px-8">
       <Header />
-      
+
       <Alert message={alertMessage} onClose={() => setAlertMessage('')} />
 
-      <div className="movie-header sticky top-0 z-10 flex items-center justify-between pb-6 border-b-2 border-light-yellow mt-24 bg-dark-blue">
-        <button
-          className="back-button bg-light-yellow text-dark-blue font-bold px-4 py-2 rounded-full transform transition-all hover:bg-bright-yellow hover:scale-110"
+      <div className="movie-header top-0 z-10 flex items-center justify-between pb-6 border-b-2 border-light-yellow mt-24 bg-dark-blue">
+        <div
+          className="back-arrow text-white text-3xl cursor-pointer transform transition-all hover:translate-x-[-5px]"
           onClick={() => navigate(-1)}
         >
-          &#8592; Back
-        </button>
+          &#8592;
+        </div>
         <h1 className="movie-title text-4xl font-title text-white ml-4">{movie.title}</h1>
       </div>
 
@@ -71,9 +72,9 @@ const MovieDetailPage = () => {
         <div className="movie-right pl-8 flex-1">
           <button
             className={`wishlist-button px-6 py-3 rounded-full text-lg font-bold transition-all duration-300 ${categoryColors[category]}`}
-            onClick={handleAddToWishlist}
+            onClick={handleWishlistToggle}
           >
-            Add to Wishlist
+            {wishlist.some(item => item.id === movie.id) ? 'Remove from Wishlist' : 'Add to Wishlist'}
           </button>
 
           <p className={`movie-description mt-4 text-lg ${category === 'top_rated' ? 'font-edu' : category === 'upcoming' ? 'font-space' : 'font-body'} text-white`}>

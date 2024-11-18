@@ -18,7 +18,9 @@ module.exports = {
       },
       fontFamily: {
         title: ['Bebas Neue', 'sans-serif'], 
-        body: ['Noto Serif', 'serif'],   
+        body: ['Noto Serif', 'serif'],
+        edu: ['Edu AU VIC WA NT Pre', 'sans-serif'],
+        space: ['Space Grotesk', 'sans-serif'],
       },
       animation: {
         fadeIn: 'fadeIn 0.5s ease-out',
