@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from '../components/Carousel';
-import { Link } from 'react-router-dom';
 import { fetchMoviesByCategory } from '../api';
 import { useWishlist } from '../context/WishlistContext';
-import { FaHeart } from 'react-icons/fa';
+import Header from '../components/common/Header'; 
 
 const categories = [
   { key: 'popular', title: 'Popular Movies' },
@@ -41,18 +40,12 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
-      <header className="home-header">
-        <h1 className="home-title">🎬 Movie Web 🎬</h1>
-        <Link to="/wishlist" className="wishlist-container">
-          <div className="wishlist-icon">
-            <FaHeart />
-            {wishlist.length > 0 && <div className="wishlist-count">{wishlist.length}</div>}
-          </div>
-        </Link>
-      </header>
-      {categories.map(({ key, title }) => (
-        <Carousel key={key} title={title} movies={moviesByCategory[key] || []} category={key} />
-      ))}
+      <Header />
+      <div className="content">
+        {categories.map(({ key, title }) => (
+          <Carousel key={key} title={title} movies={moviesByCategory[key] || []} category={key} />
+        ))}
+      </div>
     </div>
   );
 };
