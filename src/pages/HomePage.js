@@ -17,49 +17,40 @@ const HomePage = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const moviesData = {};
-        for (const category of categories) {
-          const movies = await fetchMoviesByCategory(category.key);
-          moviesData[category.key] = movies;
-        }
-        setMoviesByCategory(moviesData);
-        setLoading(false);
-      } catch (err) {
+        const moviesData = await Promise.all(
+          categories.map(async ({ key }) => ({
+            key,
+            movies: await fetchMoviesByCategory(key),
+          }))
+        );
+        setMoviesByCategory(
+          moviesData.reduce((acc, { key, movies }) => ({ ...acc, [key]: movies }), {})
+        );
+      } catch {
         setError('Failed to load movies. Please try again later.');
+      } finally {
         setLoading(false);
       }
     };
-
     fetchMovies();
   }, []);
 
-  if (loading)
-    return (
-      <div className="flex justify-center items-center min-h-screen text-2xl text-gray-700">
-        Loading...
-      </div>
-    );
-
-  if (error)
-    return (
-      <div className="flex justify-center items-center min-h-screen text-red-600 font-bold">
-        {error}
-      </div>
-    );
+  const renderContent = () => {
+    if (loading) {
+      return <div className="loading-screen">Loading...</div>;
+    }
+    if (error) {
+      return <div className="error-screen">{error}</div>;
+    }
+    return categories.map(({ key, title }) => (
+      <Carousel key={key} title={title} movies={moviesByCategory[key] || []} category={key} />
+    ));
+  };
 
   return (
-    <div className="min-h-screen bg-dark-red text-light-yellow">
+    <div className="home-page min-h-screen bg-dark-red text-light-yellow">
       <Header />
-      <div className="pt-20 pb-8">
-        {categories.map(({ key, title }) => (
-          <Carousel
-            key={key}
-            title={title}
-            movies={moviesByCategory[key] || []}
-            category={key}
-          />
-        ))}
-      </div>
+      <div className="content pt-20 pb-8">{renderContent()}</div>
     </div>
   );
 };

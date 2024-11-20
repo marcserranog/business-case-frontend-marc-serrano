@@ -15,7 +15,9 @@ const WishlistPage = () => {
         <div className="mt-14">
           <div className="wishlist-content px-6 py-8 text-center">
             <h1 className="text-3xl font-body text-light-yellow mb-6">Your Wishlist</h1>
-            <p className="text-lg text-light-yellow mb-4">Your wishlist is empty. Start adding some movies!</p>
+            <p className="text-lg text-light-yellow mb-4">
+              Your wishlist is empty. Start adding some movies!
+            </p>
             <button
               onClick={() => navigate('/')}
               className="bg-bright-red text-white py-2 px-6 rounded-lg hover:bg-light-yellow transition"
