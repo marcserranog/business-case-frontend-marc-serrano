@@ -2,7 +2,7 @@
 
 ## About the Project
 
-Welcome to the **Movie Wishlist App**! This project is created as a frontend challenge to showcase my skills as a Frontend Engineer. The app allows users to browse movies from various categories and add them to their wishlist. The movie data is fetched from **TheMovieDatabase API**, and the app features dynamic carousels, movie details, and a wishlist functionality.
+Welcome to the my business case I called **NETFLIXY**! This project is created as a frontend challenge to showcase my skills as a Frontend Engineer. The app allows users to browse movies from various categories and add them to their wishlist. The movie data is fetched from **TheMovieDatabase API**, and the app features dynamic carousels, movie details, and a wishlist functionality.
 
 ### Key Features:
 - **Homepage**: Displays 3 carousels, each showcasing a different movie category (Popular, Top Rated, Upcoming).
