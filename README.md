@@ -43,22 +43,22 @@ Make sure you have **Node.js** and **npm** installed. If not, download and insta
 
 This project uses npm to manage dependencies. Run the following command to install all the necessary packages:
 
-   ```npm install
+   ```npm install```
    or 
-   ```yarn install 
+   ```yarn install ```
 
 3. **Development**:
 
 Once the dependencies are installed, you can start the development server:
 
-   ```npm start
-   or 
-   ```yarn start
+   ```npm start```
+      or 
+   ```yarn start```
 
 4. **Running tests**:
 
 To run the tests with Jest, use the following command:
 
-   ```npm test
+   ```npm test```
    or 
-   ```yarn test
+   ```yarn test```
