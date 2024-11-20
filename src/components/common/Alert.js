@@ -2,36 +2,28 @@ import React, { useEffect, useState } from 'react';
 
 const Alert = ({ message, onClose }) => {
   const [visible, setVisible] = useState(false);
-  const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
     if (message) {
       setVisible(true);
-      setFadeOut(false);  
 
-      setTimeout(() => {
-        setFadeOut(true);
-      }, 1500);
+      const fadeOutTimeout = setTimeout(() => setVisible(false), 1500);
+      const closeTimeout = setTimeout(() => onClose(), 2000);
 
-      setTimeout(() => {
-        setVisible(false);
-        onClose(); 
-      }, 2000);
+      return () => {
+        clearTimeout(fadeOutTimeout);
+        clearTimeout(closeTimeout);
+      };
     }
-  }, [message, onClose]); 
+  }, [message, onClose]);
 
-  return (
-    visible && (
-      <div
-        className={`alert fixed top-0 left-1/2 transform -translate-x-1/2 mt-8 bg-bright-red text-white px-6 py-3 rounded-lg shadow-lg opacity-100 transition-all duration-500 ease-out ${
-          fadeOut ? 'translate-y-[-100px] opacity-0' : 'translate-y-0 opacity-100'
-        }`}
-        style={{ zIndex: 9999 }} 
-      >
-        <p>{message}</p>
-      </div>
-    )
-  );
+  return visible ? (
+    <div
+      className="alert fixed top-8 left-1/2 transform -translate-x-1/2 bg-bright-red text-white px-6 py-3 rounded-lg shadow-lg opacity-100 transition-opacity duration-500 z-50"
+    >
+      <p>{message}</p>
+    </div>
+  ) : null;
 };
 
 export default Alert;
