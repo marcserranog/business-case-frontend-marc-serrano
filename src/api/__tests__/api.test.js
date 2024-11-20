@@ -1,4 +1,4 @@
-import { fetchMoviesByCategory, fetchMovieDetails } from '../api';  
+import { fetchMoviesByCategory } from '../api';  
 import fetchMock from 'jest-fetch-mock';
 
 fetchMock.enableMocks();  
