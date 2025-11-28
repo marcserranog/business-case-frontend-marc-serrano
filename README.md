@@ -62,3 +62,5 @@ To run the tests with Jest, use the following command:
    ```npm test```
    or 
    ```yarn test```
+
+- GH-pages command update --> ```git subtree push --prefix dist origin gh-pages --force```

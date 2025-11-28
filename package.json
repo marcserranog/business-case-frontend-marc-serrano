@@ -4,16 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --mode development --open",
+    "start": "webpack serve --mode development",
     "build": "webpack --mode production",
-    "test": "jest",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "predeploy": "npm run build && node scripts/create-404.js",
+    "deploy": "git push origin `git subtree split --prefix dist main`:gh-pages --force"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "homepage": "https://marcserranog.github.io/business-case-frontend-marc-serrano",
+  "homepage": "https://marcserranog.github.io/fakeflix",
   "dependencies": {
     "dotenv": "^16.4.5",
     "postcss-loader": "^8.1.1",
