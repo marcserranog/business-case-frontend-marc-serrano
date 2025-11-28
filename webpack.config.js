@@ -10,8 +10,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/business-case-frontend-marc-serrano/',
-  },
+    publicPath: './',
+   },
   module: {
     rules: [
       {
