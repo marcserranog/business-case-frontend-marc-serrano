@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom'; 
 import HomePage from './pages/HomePage';
-import WishlistPage from './pages/WishlistPage';
+import WishlistPage from './pages/WishListPage';
 import MovieDetailPage from './pages/MovieDetailPage';
 
 const App = () => {
